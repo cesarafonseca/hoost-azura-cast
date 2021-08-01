@@ -67,51 +67,57 @@ class StationClient extends AbstractStationClient
     }
 
     /**
-     * @return void
+     * @return Dto\StationServiceControl
      *
      * @throws Exception\AccessDeniedException
      * @throws Exception\ClientRequestException
      */
-    public function restart(): void
+    public function restart()
     {
-        $this->request('POST', sprintf(
+        $stationRestartData = $this->request('POST', sprintf(
             'station/%s/restart',
             $this->stationId
         ));
+
+        return Dto\StationServiceControl::fromArray($stationRestartData);
     }
 
     /**
      * @param string $action
      *
-     * @return void
+     * @return Dto\StationServiceControl
      *
      * @throws Exception\AccessDeniedException
      * @throws Exception\ClientRequestException
      */
-    public function frontend(string $action): void
+    public function frontend(string $action)
     {
-        $this->request('POST', sprintf(
+        $stationServiceControlData = $this->request('POST', sprintf(
             'station/%s/frontend/%s',
             $this->stationId,
             $action
         ));
+
+        return Dto\StationServiceControl::fromArray($stationServiceControlData);
     }
 
     /**
      * @param string $action
      *
-     * @return void
+     * @return Dto\StationServiceControl
      *
      * @throws Exception\AccessDeniedException
      * @throws Exception\ClientRequestException
      */
-    public function backend(string $action): void
+    public function backend(string $action)
     {
-        $this->request('POST', sprintf(
+        $stationServiceControlData = $this->request('POST', sprintf(
             'station/%s/backend/%s',
             $this->stationId,
             $action
         ));
+
+        return Dto\StationServiceControl::fromArray($stationServiceControlData);
     }
 
     /**
