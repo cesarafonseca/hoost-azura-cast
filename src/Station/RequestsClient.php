@@ -10,21 +10,16 @@ use AzuraCast\Api\Exception;
 class RequestsClient extends AbstractStationClient
 {
     /**
-     * @param int $page
-     * @param int $perPage
-     *
      * @return Dto\RequestableSongsDto
      *
      * @throws Exception\AccessDeniedException
      * @throws Exception\ClientRequestException
      */
-    public function list(int $page = 1, int $perPage = -1): Dto\RequestableSongsDto
+    public function list(): Dto\RequestableSongsDto
     {
         $requestableSongsData = $this->request('GET', sprintf(
-            'station/%s/requests?per_page=%d&page=%d',
-            $this->stationId,
-            $perPage,
-            $page
+            'station/%s/requests',
+            $this->stationId
         ));
 
         return Dto\RequestableSongsDto::fromArray($requestableSongsData);
