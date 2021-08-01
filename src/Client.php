@@ -85,6 +85,7 @@ class Client extends AbstractClient
 
         $options['allow_redirects'] = true;
         $options['http_errors'] = false;
+        $options['verify'] = false; // temporary workaround
 
         if (null !== $apiKey) {
             $options['headers']['Authorization'] = 'Bearer ' . $apiKey;
